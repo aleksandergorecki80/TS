@@ -43,3 +43,73 @@ const dataKielbasa: Tab<string> = {
     title: 'Kaszanka',
     amount: "2 Kg"
 }
+
+
+// NO BS TS
+
+function simpleState<T>(initial: T): [() => T, (v: T) => void] {
+    let val: T = initial;
+    return [
+        () => val,
+        (v: T) => {
+            val = v
+        } 
+    ]
+ }
+
+ const [stGett, stSett] = simpleState(10)
+
+ console.log('NO BS')
+ console.log(stGett())
+ stSett(62)
+ console.log(stGett())
+
+//  interface Rank <RankItem> {
+//     item: RankItem;
+//     rank: number;
+//  }
+
+//  function ranker <RankItem>(
+//     items: RankItem[],
+//     rank: (v: RankItem) => number
+//  ): RankItem[] {
+//     const ranks: Rank<RankItem>[] = items.map((item) => )
+//  }
+
+function removeItemFromArray<T>(arr: Array<T>, item: T){
+    return arr.filter(element => element !== item)
+}
+
+const arr3 = removeItemFromArray<number>([1,2,3], 2)
+console.log(arr3)
+
+const arrStr = removeItemFromArray<string>(['one', 'twp', 'three'], 'twp')
+console.log(arrStr)
+
+
+class Collection<T> {
+    items: Array<T> = [];
+
+    add(item: T) {
+        this.items.push(item)
+    }
+
+    remove(item: T){
+        const result = this.items.filter(element => element !== item)
+        this.items = result
+    }
+}
+
+const colletion = new Collection<number>()
+colletion.add(1)
+colletion.add(1)
+colletion.add(3)
+colletion.remove(3)
+console.log(colletion)
+
+const colletionSrr = new Collection<string>()
+colletionSrr.add('1')
+colletionSrr.add('1')
+colletionSrr.add('3')
+colletionSrr.remove('3')
+console.log(colletionSrr)
