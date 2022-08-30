@@ -113,3 +113,14 @@ colletionSrr.add('1')
 colletionSrr.add('3')
 colletionSrr.remove('3')
 console.log(colletionSrr)
+
+
+function identity<Type>(arg: Type): Type {
+    return arg;
+  }
+
+  let output = identity("myString");
+
+ 
+   
+  let myIdentity: <Type>(arg: Type) => Type = identity;
